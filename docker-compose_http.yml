@@ -32,7 +32,7 @@ services:
       --accessLog
       --api
     networks:
-      - proxynet
+      - public
 
 networks:
   public:
