@@ -11,7 +11,7 @@ services:
       - "--acme.onHostRule=true"
       - "--acme.onDemand=false"
       - "--acme.acmelogging=true"
-      - "--acme.email=ruan@ruanbekker.com"
+      - "--acme.email=${EMAIL:-root@localhost}"
       - "--docker"
       - "--docker.swarmMode"
       - "--docker.watch"
