@@ -54,6 +54,7 @@ services:
         - "traefik.backend=traefik"
         - "traefik.enable=true"
         - "traefik.frontend.rule=Host:traefik.${DOMAIN:-localhost}"
+        - "traefik.frontend.auth.basic=${MD5HASH:-demo:$$apr1$$jzUDG/2u$$BNpRRwvKRyZjyjN53Qvia0}"
         - "traefik.frontend.headers.SSLRedirect=true"
         - "traefik.frontend.entryPoints=http,https"
 
