@@ -27,14 +27,6 @@ $ export MYHASH=james:\$apr1\$qiEFTkWS\$w8skQfSLNHBxtyCLYp7mX1
 - "traefik.frontend.auth.basic=${MYHASH}"
 ```
 
-## Configuration
-
-Stack takes the following environment variables:
-
-- EMAIL=user@domain.com (email for acme)
-- DOMAIN=yourdomain.com (base domain)
-- MD5HASH=yourname:hash (defaults to demo/demo, use [#pre-requirements](#pre-requirements) to generate hash)
-
 ## Usage:
 
 Define your environment variables and deploy the stack
@@ -49,6 +41,25 @@ Creating network proxy
 Creating service proxy_traefik
 ```
 
+## Configuration
+
+Stack takes the following environment variables:
+
+- EMAIL=user@domain.com (email for acme)
+- DOMAIN=yourdomain.com (base domain)
+- MD5HASH=yourname:hash (defaults to demo/demo, use [#pre-requirements](#pre-requirements) to generate hash)
+
 ## Exposed Endpoints:
 
 Traefik's dashboard should be available on `https://traefik.${DOMAIN}`
+
+## Create a Sample App with Traefik
+
+SSL Termination for a Ghost blog using Traefik:
+
+```
+$ docker stack deploy -c sample_https_app.docker-compose.yml apps
+Creating service apps_blog
+```
+
+Application should be exposed on `www.${DOMAIN}` and `${DOMAIN}`
