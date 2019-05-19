@@ -1,0 +1,40 @@
+version: '3.5'
+
+services:
+  traefik:
+    image: traefik:v1.7
+    ports:
+      - 80:80
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+        preferences:
+          - spread: node.id
+      labels:
+        - traefik.frontend.rule=Host:traefik.${DOMAIN:-localhost}
+        - traefik.enable=true
+        - traefik.port=8080
+        - traefik.tags=public
+        - traefik.docker.network=public
+        - traefik.redirectorservice.frontend.entryPoints=http
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: >
+      --docker
+      --docker.swarmmode
+      --docker.watch
+      --docker.exposedbydefault=false
+      --constraints=tag==public
+      --entrypoints='Name:http Address::80'
+      --logLevel=INFO
+      --accessLog
+      --api
+    networks:
+      - proxynet
+
+networks:
+  public:
+    name: public
+    driver: overlay
