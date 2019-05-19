@@ -34,7 +34,7 @@ Define your environment variables and deploy the stack
 ```
 $ export EMAIL=user@domain.com
 $ export DOMAIN=mydomain.com
-$ export MYHASH=james:\$apr1\$qiEFTkWS\$w8skQfSLNHBxtyCLYp7mX1
+$ export MD5HASH=james:\$apr1\$qiEFTkWS\$w8skQfSLNHBxtyCLYp7mX1
 
 $ docker stack deploy -c docker-compose.yml proxy
 Creating network proxy
