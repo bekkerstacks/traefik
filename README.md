@@ -1,5 +1,5 @@
 # bekkerstacks: traefik
-Traefik Stack for Docker Swarm
+Traefik Stack for Docker Swarm with SSL
 
 ## Usage:
 
