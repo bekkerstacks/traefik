@@ -1,1 +1,66 @@
+version: "3.6"
+services:
+  traefik:
+    image: traefik:latest
+    command:
+      - "--api"
+      - "--acme"
+      - "--acme.storage=/certs/acme.json"
+      - "--acme.entryPoint=https"
+      - "--acme.httpChallenge.entryPoint=http"
+      - "--acme.onHostRule=true"
+      - "--acme.onDemand=false"
+      - "--acme.acmelogging=true"
+      - "--acme.email=ruan@ruanbekker.com"
+      - "--docker"
+      - "--docker.swarmMode"
+      - "--docker.watch"
+      - "--defaultentrypoints=http,https"
+      - "--entrypoints=Name:http Address::80"
+      - "--entrypoints=Name:https Address::443 TLS"
+      - "--logLevel=INFO"
+      - "--accessLog"
+      - "--metrics"
+      - "--metrics.prometheus"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - traefik_certs:/certs
+    networks:
+      - public
+    ports:
+      - target: 80
+        published: 80
+        mode: host
+      - target: 443
+        published: 443
+        mode: host
+      - target: 8080
+        published: 8080
+        mode: host
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.docker.network=public"
+        - "traefik.port=8080"
+        - "traefik.backend=traefik"
+        - "traefik.enable=true"
+        - "traefik.frontend.rule=Host:traefik.${DOMAIN:-localhost}"
+        - "traefik.frontend.headers.SSLRedirect=true"
+        - "traefik.frontend.entryPoints=http,https"
 
+networks:
+  public:
+    driver: overlay
+    name: public
+
+volumes:
+  traefik_certs: {}
