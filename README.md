@@ -1,4 +1,4 @@
-# traefik
+# bekkerstacks: traefik
 Traefik Stack for Docker Swarm
 
 ## Pre-Requirements:
