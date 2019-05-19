@@ -49,6 +49,8 @@ Stack takes the following environment variables:
 - DOMAIN=yourdomain.com (base domain)
 - MD5HASH=yourname:hash (defaults to demo/demo, use [#pre-requirements](#pre-requirements) to generate hash)
 
+See [docker-compose_http.yml](docker-compose_http.yml) if you are interested in a HTTP only proxy.
+
 ## Exposed Endpoints:
 
 Traefik's dashboard should be available on `https://traefik.${DOMAIN}`
