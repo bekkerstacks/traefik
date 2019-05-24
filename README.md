@@ -21,7 +21,7 @@ Stack takes the following environment variables:
 
 - EMAIL=user@domain.com (email for acme)
 - DOMAIN=yourdomain.com (base domain)
-- MD5HASH=yourname:hash (defaults to demo/demo, use [#pre-requirements](#pre-requirements) to generate hash)
+- MD5HASH=yourname:hash (defaults to admin/admin, use [#pre-requirements](#pre-requirements) to generate hash)
 
 See [docker-compose_http.yml](docker-compose_http.yml) if you are interested in a HTTP only proxy.
 
