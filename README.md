@@ -1,9 +1,9 @@
 # bekkerstacks: traefik
 Traefik Stack for Docker Swarm with SSL
 
-## Usage:
+## Usage for HTTPS:
 
-Define your environment variables and deploy the stack
+Deploy Traefik in HTTPS. Define your environment variables and deploy the stack
 
 ```
 $ export EMAIL=user@domain.com
@@ -11,6 +11,20 @@ $ export DOMAIN=mydomain.com
 $ export MD5HASH=james:\$apr1\$qiEFTkWS\$w8skQfSLNHBxtyCLYp7mX1
 
 $ docker stack deploy -c docker-compose.yml proxy
+Creating network proxy
+Creating service proxy_traefik
+```
+
+## Usage for HTTP:
+
+Deploy Traefik in HTTP only. Define your environment variables and deploy the stack
+
+```
+$ export EMAIL=user@domain.com
+$ export DOMAIN=mydomain.com
+$ export MD5HASH=james:\$apr1\$qiEFTkWS\$w8skQfSLNHBxtyCLYp7mX1
+
+$ docker stack deploy -c docker-compose_http.yml proxy
 Creating network proxy
 Creating service proxy_traefik
 ```
