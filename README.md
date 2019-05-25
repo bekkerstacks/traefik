@@ -23,7 +23,7 @@ Stack takes the following environment variables:
 - DOMAIN=yourdomain.com (base domain)
 - MD5HASH=yourname:hash (defaults to admin/admin, use [#pre-requirements](#pre-requirements) to generate hash)
 
-See [docker-compose_http.yml](docker-compose_http.yml) if you are interested in a HTTP only proxy.
+See [docker-compose_http.yml](docker-compose_http.yml) if you are interested in a **HTTP only proxy**.
 
 ## Basic Auth for Dashboard:
 
@@ -60,7 +60,7 @@ Traefik's dashboard should be available on `https://traefik.${DOMAIN}`
 SSL Termination for a Ghost blog using Traefik:
 
 ```
-$ docker stack deploy -c sample_https_app.docker-compose.yml apps
+$ docker stack deploy -c samples/docker-compose.sample-https-app.yml apps
 Creating service apps_blog
 ```
 
