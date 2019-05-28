@@ -1,6 +1,10 @@
 # bekkerstacks: traefik
 Traefik Stack for Docker Swarm with SSL
 
+## Requirement:
+
+If you don't have swarm enabled, you can setup swarm with [docker in docker](https://github.com/bekkerstacks/docker-swarm)
+
 ## Usage for HTTPS:
 
 Deploy Traefik in HTTPS. Define your environment variables and deploy the stack
