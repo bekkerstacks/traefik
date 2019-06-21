@@ -9,26 +9,27 @@ services:
       - target: 443
         published: 443
         mode: host
-    command:
-      - "--api"
-      - "--acme"
-      - "--acme.storage=/certs/acme.json"
-      - "--acme.entryPoint=https"
-      - "--acme.httpChallenge.entryPoint=http"
-      - "--acme.onHostRule=true"
-      - "--acme.onDemand=false"
-      - "--acme.acmelogging=true"
-      - "--acme.email=${EMAIL:-root@localhost}"
-      - "--docker"
-      - "--docker.swarmMode"
-      - "--docker.watch"
-      - "--defaultentrypoints=http,https"
-      - "--entrypoints=Name:http Address::80"
-      - "--entrypoints=Name:https Address::443 TLS"
-      - "--logLevel=INFO"
-      - "--accessLog"
-      - "--metrics"
-      - "--metrics.prometheus"
+    command: >
+      --api
+      --acme
+      --acme.storage=/certs/acme.json
+      --acme.entryPoint=https
+      --acme.httpChallenge.entryPoint=http
+      --acme.onHostRule=true
+      --acme.onDemand=false
+      --acme.acmelogging=true
+      --acme.email=${EMAIL:-root@localhost}
+      --docker
+      --docker.swarmMode
+      --docker.domain=${DOMAIN:-localhost}
+      --docker.watch
+      --defaultentrypoints=http,https
+      --entrypoints='Name:http Address::80'
+      --entrypoints='Name:https Address::443 TLS'
+      --logLevel=INFO
+      --accessLog
+      --metrics
+      --metrics.prometheus
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - traefik_certs:/certs
