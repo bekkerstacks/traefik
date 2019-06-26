@@ -2,9 +2,12 @@ version: '3.5'
 
 services:
   traefik:
-    image: traefik:v1.7
+    image: traefik:latest
     ports:
       - 80:80
+    configs:
+      - source: traefik_htpasswd
+        target: /etc/htpasswd
     deploy:
       replicas: 1
       placement:
@@ -18,6 +21,7 @@ services:
         - traefik.port=8080
         - traefik.tags=public
         - traefik.docker.network=public
+        - traefik.frontend.auth.basic.usersFile=/etc/htpasswd
         - traefik.redirectorservice.frontend.entryPoints=http
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -33,6 +37,10 @@ services:
       --api
     networks:
       - public
+
+configs:
+  traefik_htpasswd:
+    file: ./htpasswd
 
 networks:
   public:
