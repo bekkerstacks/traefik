@@ -46,6 +46,10 @@ See [docker-compose_http.yml](docker-compose_http.yml) if you are interested in 
 ## Basic Auth for Dashboard:
 
 ```
+$ htpasswd -cB htpasswd admin
+New password:
+Re-type new password:
+Adding password for user admin
 ```
 
 ## Exposed Endpoints:
