@@ -12,7 +12,6 @@ Deploy Traefik in HTTPS. Define your environment variables and deploy the stack
 ```
 $ export EMAIL=user@domain.com
 $ export DOMAIN=mydomain.com
-$ export MD5HASH=james:\$apr1\$qiEFTkWS\$w8skQfSLNHBxtyCLYp7mX1
 
 $ docker stack deploy -c docker-compose.yml proxy
 Creating network proxy
@@ -26,7 +25,6 @@ Deploy Traefik in HTTP only. Define your environment variables and deploy the st
 ```
 $ export EMAIL=user@domain.com
 $ export DOMAIN=mydomain.com
-$ export MD5HASH=james:\$apr1\$qiEFTkWS\$w8skQfSLNHBxtyCLYp7mX1
 
 $ docker stack deploy -c docker-compose_http.yml proxy
 Creating network proxy
@@ -39,7 +37,6 @@ Stack takes the following environment variables:
 
 - EMAIL=user@domain.com (email for acme)
 - DOMAIN=yourdomain.com (base domain)
-- MD5HASH=yourname:hash (defaults to admin/admin, use [#pre-requirements](#pre-requirements) to generate hash)
 
 See [docker-compose_http.yml](docker-compose_http.yml) if you are interested in a **HTTP only proxy**.
 
