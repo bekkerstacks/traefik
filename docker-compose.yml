@@ -1,7 +1,7 @@
-version: "3.6"
+version: '3.7'
 services:
   traefik:
-    image: traefik:v1.7-alpine
+    image: traefik:latest
     ports:
       - target: 80
         published: 80
@@ -33,9 +33,9 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - traefik_certs:/certs
-    #configs:
-    #  - source: traefik-auth.config
-    #    target: /traefik-auth
+    configs:
+      - source: traefik_htpasswd
+        target: /etc/htpasswd
     networks:
       - public
     deploy:
@@ -55,14 +55,13 @@ services:
         - "traefik.backend=traefik"
         - "traefik.enable=true"
         - "traefik.frontend.rule=Host:traefik.${DOMAIN:-localhost}"
-        # - "traefik.frontend.auth.basic.usersFile=/traefik-auth"
-        - "traefik.frontend.auth.basic=${MD5HASH:-admin:$apr1$7OA9nkWj$o9hnovkKjDHCyN54M.hho0}"
+        - "traefik.frontend.auth.basic.usersFile=/etc/htpasswd"
         - "traefik.frontend.headers.SSLRedirect=true"
         - "traefik.frontend.entryPoints=http,https"
 
-#configs:
-#  traefik-auth.config:
-#    file: ./traefik-auth
+configs:
+  traefik_htpasswd:
+    file: ./htpasswd
 
 networks:
   public:
