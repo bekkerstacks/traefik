@@ -5,6 +5,19 @@ Traefik Stack for Docker Swarm with SSL
 
 If you don't have swarm enabled, you can setup swarm with [docker in docker](https://github.com/bekkerstacks/docker-swarm)
 
+## Basic Auth for Dashboard:
+
+The `htpasswd` file has the default admin/admin credentials, but to overwrite:
+
+```
+$ htpasswd -cB htpasswd admin
+New password:
+Re-type new password:
+Adding password for user admin
+```
+
+Alternative options for basic auth is available in [guide](guide/README.md)
+
 ## Usage for HTTPS:
 
 Deploy Traefik in HTTPS. Define your environment variables and deploy the stack
@@ -39,15 +52,6 @@ Stack takes the following environment variables:
 - DOMAIN=yourdomain.com (base domain)
 
 See [docker-compose_http.yml](docker-compose_http.yml) if you are interested in a **HTTP only proxy**.
-
-## Basic Auth for Dashboard:
-
-```
-$ htpasswd -cB htpasswd admin
-New password:
-Re-type new password:
-Adding password for user admin
-```
 
 ## Exposed Endpoints:
 
