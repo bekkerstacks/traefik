@@ -35,6 +35,8 @@ services:
       --logLevel=INFO
       --accessLog
       --api
+      --metrics
+      --metrics.prometheus
     networks:
       - public
 
