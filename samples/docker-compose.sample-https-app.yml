@@ -1,23 +1,21 @@
 version: '3.4'
 
 services:
-  blog:
-    image: ghost:1.22.7-alpine
+  whoami:
+    image: ruanbekker/whoami:me
     networks:
       - public
     deploy:
       mode: replicated
       replicas: 1
       labels:
-        - "traefik.backend.loadbalancer.sticky=true"
-        - "traefik.backend.loadbalancer.swarm=true"
-        - "traefik.backend=blog"
         - "traefik.enable=true"
         - "traefik.docker.network=public"
-        - "traefik.frontend.rule=Host:www.${DOMAIN},${DOMAIN}"
+        - "traefik.backend=whoami"
+        - "traefik.port=8000"
+        - "traefik.frontend.rule=Host:whoami.${DOMAIN}"
         - "traefik.frontend.headers.SSLRedirect=true"
         - "traefik.frontend.entryPoints=http,https"
-        - "traefik.port=2368"
 
 networks:
   public:
