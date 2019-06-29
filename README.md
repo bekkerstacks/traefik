@@ -71,7 +71,7 @@ Creating service apps_whoami
 Application should be exposed on `whoami.${DOMAIN}`
 
 ```
-$ curl http://whoami.${DOAMIN}
+$ curl http://whoami.${DOMAIN}
 Hostname: ea75b484dbaf
 ```
 
@@ -87,6 +87,6 @@ Creating service apps_whoami
 Application should be exposed on `whoami.${DOMAIN}`
 
 ```
-$ curl http://whoami.${DOAMIN}
+$ curl http://whoami.${DOMAIN}
 Hostname: ga39f420dgzo
 ```
