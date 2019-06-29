@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  whoami:
+    image: ruanbekker/whoami:me
+    networks:
+      - public
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=public"
+        - "traefik.backend=whoami"
+        - "traefik.port=8000"
+        - "traefik.frontend.rule=Host:whoami.${DOMAIN}"
+        - "traefik.frontend.entryPoints=http"
+
+networks:
+  public:
+    external: true
