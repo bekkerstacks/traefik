@@ -59,11 +59,34 @@ Traefik's dashboard should be available on `https://traefik.${DOMAIN}`
 
 ## Create a Sample App with Traefik
 
-SSL Termination for a Ghost blog using Traefik:
+### HTTP Endpoint:
+
+To create a application for Traefik in HTTP Frontends:
+
+```
+$ docker stack deploy -c samples/docker-compose.sample-http-app.yml apps
+Creating service apps_whoami
+```
+
+Application should be exposed on `whoami.${DOMAIN}`
+
+```
+$ curl http://whoami.${DOAMIN}
+Hostname: ea75b484dbaf
+```
+
+### HTTPS Endpoint:
+
+If Traefik was setup with HTTPS, for SSL Termination on Traefik for the sample application:
 
 ```
 $ docker stack deploy -c samples/docker-compose.sample-https-app.yml apps
-Creating service apps_blog
+Creating service apps_whoami
 ```
 
-Application should be exposed on `www.${DOMAIN}` and `${DOMAIN}`
+Application should be exposed on `whoami.${DOMAIN}`
+
+```
+$ curl http://whoami.${DOAMIN}
+Hostname: ga39f420dgzo
+```
