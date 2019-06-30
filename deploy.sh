@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-MODE=${MODE-https}
+BSTACKS_MODE=${MODE-https}
 
-if [ ${MODE} == "http" ] 
+if [ ${BSTACKS_MODE} == "http" ] 
   then
     echo "deploying traefik stack in http mode"
     docker stack deploy -c docker-compose_http.yml proxy
