@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
-BSTACKS_MODE=${MODE-https}
+EMAIL=${EMAIL}
+DOMAIN=${DOMAIN-localhost}
+PROTOCOL=${PROTOCOL-https}
 
-if [ ${BSTACKS_MODE} == "http" ] 
+# ask user for user/pass
+read -p 'Username for Traefik UI: ' traefik_user
+read -sp 'Password for Traefik UI: ' traefik_pass
+printf "${traefik_user}:$(openssl passwd -apr1 ${traefik_pass})\n" > ./htpasswd
+
+if [ ${PROTOCOL} == "http" ] 
   then
     echo "deploying traefik stack in http mode"
     docker stack deploy -c docker-compose_http.yml proxy
