@@ -5,7 +5,28 @@ Traefik Stack for Docker Swarm with SSL
 
 If you don't have swarm enabled, you can setup swarm with [docker in docker](https://github.com/bekkerstacks/docker-swarm)
 
-## Basic Auth for Dashboard:
+## Usage
+
+To deploy Traefik in HTTPS mode using the deploy script:
+
+```
+$ EMAIL=me@mydomain.com DOMAIN=mydomain.com PROTOCOL=https bash deploy.sh
+```
+
+To deploy Traefik in HTTP mode using the deploy script:
+
+```
+$ DOMAIN=localhost PROTOCOL=http bash deploy.sh
+```
+
+## Documentation
+
+- [Deploy Traefik in HTTP Mode](https://github.com/bekkerstacks/traefik/wiki/Deploy-Traefik-in-HTTP-Mode)
+- [Deploy Traefik in HTTPS Mode](https://github.com/bekkerstacks/traefik/wiki/Deploy-Traefik-in-HTTPS-Mode)
+
+## More Info
+
+### Basic Auth for Dashboard:
 
 The `htpasswd` file has the default admin/admin credentials, but to overwrite:
 
@@ -18,7 +39,7 @@ Adding password for user admin
 
 Alternative options for basic auth is available in [guide](guide/README.md)
 
-## Usage for HTTPS:
+### Usage for HTTPS:
 
 Deploy Traefik in HTTPS. Define your environment variables and deploy the stack
 
@@ -31,7 +52,7 @@ Creating network proxy
 Creating service proxy_traefik
 ```
 
-## Usage for HTTP:
+### Usage for HTTP:
 
 Deploy Traefik in HTTP only. Define your environment variables and deploy the stack
 
@@ -44,7 +65,7 @@ Creating network proxy
 Creating service proxy_traefik
 ```
 
-## Configuration
+### Configuration
 
 Stack takes the following environment variables:
 
@@ -53,13 +74,13 @@ Stack takes the following environment variables:
 
 See [docker-compose_http.yml](docker-compose_http.yml) if you are interested in a **HTTP only proxy**.
 
-## Exposed Endpoints:
+### Exposed Endpoints:
 
 Traefik's dashboard should be available on `https://traefik.${DOMAIN}`
 
-## Create a Sample App with Traefik
+### Create a Sample App with Traefik
 
-### HTTP Endpoint:
+#### HTTP Endpoint:
 
 To create a application for Traefik in HTTP Frontends:
 
@@ -75,7 +96,7 @@ $ curl http://whoami.${DOMAIN}
 Hostname: ea75b484dbaf
 ```
 
-### HTTPS Endpoint:
+#### HTTPS Endpoint:
 
 If Traefik was setup with HTTPS, for SSL Termination on Traefik for the sample application:
 
